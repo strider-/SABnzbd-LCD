@@ -1,6 +1,6 @@
 Displays SABnzbd information on a CrystalFontz LCD screen (20x4) using my dynamic json classes
 
-To use, add a solution level "ApiKey.xml" file that contains your sabnzbd api key.
+To use, add a solution level "ApiKey.xml" file that contains your sabnzbd api key.  The file is already linked in both projects.
 
 <?xml version="1.0" encoding="utf-8"?>
 <apikey>your key here</apikey>
