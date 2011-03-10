@@ -61,8 +61,6 @@ namespace Service {
                         hadData = true;
                         lcd.SetBacklight(60);
 
-                        raw = new System.Net.WebClient().DownloadString(API_QUEUE);
-                        json = JsonDocument.Parse(raw);
                         lcd.WriteText(0, 0, "{0,-10}{1,10}", json.queue.speed + "/s", json.queue.sizeleft);
 
                         if(json.queue.slots.Count > 0) {
