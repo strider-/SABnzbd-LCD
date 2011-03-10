@@ -184,6 +184,7 @@ namespace SABnzbd_LCD {
 
         public void StopMarquee() {
             write(new byte[] { 22, 255, 1, 16 });
+            setHiddenMarquee(new string(' ', 20));
         }
 
         void setHiddenMarquee(string text) {
