@@ -73,6 +73,7 @@ namespace SABnzbd_LCD {
                         hadData = false;
                         lcd.SetBacklight(0);
 
+                        lcd.StopMarquee();
                         lcd.WriteText(0, 0, "SABnzbd    v{0,-8}", json.queue.version);
                         lcd.WriteText(0, 1, "Uptime:    {0,-9}", json.queue.uptime);
                         lcd.WriteText(0, 2, "Warnings:  {0,-9}", json.queue.have_warnings);
