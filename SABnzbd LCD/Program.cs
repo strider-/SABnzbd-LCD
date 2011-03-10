@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Timers;
-using System.ComponentModel;
 
 namespace SABnzbd_LCD {
     class Program {
@@ -18,7 +14,8 @@ namespace SABnzbd_LCD {
         static void Main(string[] args) {
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
 
-            apikey = System.Xml.Linq.XDocument.Load("ApiKey.xml").Element("apikey").Value;
+            string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml");
+            apikey = System.Xml.Linq.XDocument.Load(path).Element("apikey").Value;
 
             Timer timer = new Timer(INTERVAL);
             timer.Elapsed += updateLCD;

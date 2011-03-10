@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.IO;
 using System.ServiceProcess;
-using System.Text;
 using System.Timers;
 using SABnzbd_LCD;
 
@@ -22,7 +16,8 @@ namespace Service {
 
         public Service1() {
             InitializeComponent();
-            apikey = System.Xml.Linq.XDocument.Load("ApiKey.xml").Element("apikey").Value;
+            string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml");
+            apikey = System.Xml.Linq.XDocument.Load(path).Element("apikey").Value;
         }
 
         protected override void OnStart(string[] args) {

@@ -49,3 +49,55 @@ Affected parameters are:
    logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
    assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
 Restoring event log to previous state for source SABnzbd LCD Display.
+Uninstalling assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Removing EventLog source SABnzbd LCD Display.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Installing assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Installing service SABnzbd LCD Display...
+Creating EventLog source SABnzbd LCD Display in log Application...
+Rolling back assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Restoring event log to previous state for source SABnzbd LCD Display.
+Uninstalling assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Removing EventLog source SABnzbd LCD Display.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Removing EventLog source SABnzbd LCD Display.
+Service SABnzbd LCD Display is being removed from the system...
+Service SABnzbd LCD Display was successfully removed from the system.
+Installing assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
+Installing service SABnzbd LCD Display...
+Service SABnzbd LCD Display has been successfully installed.
+Creating EventLog source SABnzbd LCD Display in log Application...
+Committing assembly 'G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.InstallLog
+   assemblypath = G:\Visual Studio Projects\2010\SABnzbd LCD\Service\bin\Release\Service.exe
