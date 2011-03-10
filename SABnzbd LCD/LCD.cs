@@ -25,6 +25,12 @@ namespace SABnzbd_LCD {
             MediumLow = 15,
             MediumHigh = 240
         }
+        public enum LCDEscape {
+            UpArrow = 65,
+            DownArrow,
+            RightArrow,
+            LeftArrow
+        }
 
         public LCD(string PortName) {
             com = new SerialPort(PortName, 19200, Parity.None, 8, StopBits.One);
@@ -184,7 +190,6 @@ namespace SABnzbd_LCD {
 
         public void StopMarquee() {
             write(new byte[] { 22, 255, 1, 16 });
-            setHiddenMarquee(new string(' ', 20));
         }
 
         void setHiddenMarquee(string text) {
@@ -193,6 +198,37 @@ namespace SABnzbd_LCD {
             for(int i = 0; i < 20; i++) {
                 write(new byte[] { 21, (byte)i, (byte)text[i] });
             }
+        }
+
+        public void WriteCustomCharacter(byte Column, byte Row, byte CharacterNumber) {
+            if(CharacterNumber < 0)
+                CharacterNumber = 0;
+            if(CharacterNumber > 7)
+                CharacterNumber = 7;
+
+            SetCursorPosition(Column, Row);
+            write((byte)(128 + CharacterNumber));
+        }
+
+        public void SetCustomCharacter(byte CharacterNumber, byte[] Data) {
+            if(CharacterNumber < 0)
+                CharacterNumber = 0;
+            if(CharacterNumber > 7)
+                CharacterNumber = 7;
+
+            if(Data.Length != 8)
+                throw new ArgumentException("Custom character data must be an array of 8 bytes.");
+
+            if(Data.Any(b => b > 63))
+                throw new ArgumentException("Custom character data is invalid.");
+
+            write(25);
+            write(CharacterNumber);
+            write(Data);
+        }
+
+        public void SendEscape(LCDEscape Escape) {
+            write(new byte[] { 27, 91, (byte)Escape });
         }
 
         public LCDCursorType CursorType {
