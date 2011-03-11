@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Timers;
+using System;
 
 namespace SABnzbd_LCD {
     class Program {
@@ -8,8 +9,8 @@ namespace SABnzbd_LCD {
         static void Main(string[] args) {
             slcd = new SABnzbdLCD("COM3", 500);
             slcd.Start();
-
-            while(true)
+            
+            while(Console.ReadKey(true).Key != ConsoleKey.Escape)
                 ;
             
             slcd.Stop();
