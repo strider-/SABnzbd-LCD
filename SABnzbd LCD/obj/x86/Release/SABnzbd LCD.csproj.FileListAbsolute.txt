@@ -1,6 +1,0 @@
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\bin\Release\SABnzbd LCD.exe
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\bin\Release\SABnzbd LCD.pdb
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\obj\x86\Release\ResolveAssemblyReference.cache
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\obj\x86\Release\SABnzbd LCD.exe
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\obj\x86\Release\SABnzbd LCD.pdb
-G:\Visual Studio Projects\2010\SABnzbd LCD\SABnzbd LCD\bin\Release\ApiKey.xml
