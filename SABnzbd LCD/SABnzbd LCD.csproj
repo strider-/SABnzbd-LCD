@@ -47,10 +47,10 @@
     <Compile Include="LCD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SABnzbdLCD.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\ApiKey.xml">
-      <Link>ApiKey.xml</Link>
+    <Content Include="ApiKey.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
