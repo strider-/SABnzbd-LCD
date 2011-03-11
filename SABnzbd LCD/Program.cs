@@ -9,21 +9,28 @@ namespace SABnzbd_LCD {
 
         static bool hadData = false;
         static LCD lcd;
-        static string apikey;
+        static string apikey = string.Empty;
 
         static void Main(string[] args) {
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
 
-            string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml");
-            apikey = System.Xml.Linq.XDocument.Load(path).Element("apikey").Value;
+            FileInfo keyXml = new FileInfo(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml"));
+            if(keyXml.Exists)
+                apikey = System.Xml.Linq.XDocument.Load(keyXml.FullName).Element("apikey").Value;
 
             Timer timer = new Timer(INTERVAL);
-            timer.Elapsed += updateLCD;
-            timer.Start();
+            timer.Elapsed += updateLCD;            
 
             lcd = new LCD(COM_PORT);
             lcd.StopMarquee();
             lcd.FormFeed();
+
+            if(string.IsNullOrWhiteSpace(apikey)) {
+                lcd.WriteText(0, 0, "Missing API Key!");
+                return;
+            }
+
+            timer.Start();
 
             while(true)
                 ;

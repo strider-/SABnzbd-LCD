@@ -12,12 +12,13 @@ namespace Service {
         Timer timer;
         bool hadData = false;
         LCD lcd;
-        string apikey;
+        string apikey = string.Empty;
 
         public Service1() {
             InitializeComponent();
-            string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml");
-            apikey = System.Xml.Linq.XDocument.Load(path).Element("apikey").Value;
+            FileInfo keyXml = new FileInfo(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "ApiKey.xml"));
+            if(keyXml.Exists)
+                apikey = System.Xml.Linq.XDocument.Load(keyXml.FullName).Element("apikey").Value;
         }
 
         protected override void OnStart(string[] args) {
@@ -28,7 +29,11 @@ namespace Service {
             lcd.StopMarquee();
             lcd.FormFeed();
 
-            timer.Start();
+            if(string.IsNullOrWhiteSpace(apikey)) {
+                lcd.WriteText(0, 0, "Missing API Key!");
+            } else {
+                timer.Start();
+            }
         }
 
         protected override void OnStop() {
@@ -84,7 +89,8 @@ namespace Service {
 
                     }
                 } catch {
-                    // whateva, just leave & try again next interval
+                    // whateva, just leave & try again next interval.
+                    // maybe log these exceptions, but chances are the LCD is no longer available (unplugged?)
                 }
             }
 
