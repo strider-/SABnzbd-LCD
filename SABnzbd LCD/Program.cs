@@ -24,12 +24,6 @@ namespace SABnzbd_LCD {
             lcd = new LCD(COM_PORT);
             lcd.StopMarquee();
             lcd.FormFeed();
-
-            if(string.IsNullOrWhiteSpace(apikey)) {
-                lcd.WriteText(0, 0, "Missing API Key!");
-                return;
-            }
-
             timer.Start();
 
             while(true)
@@ -51,41 +45,47 @@ namespace SABnzbd_LCD {
                     lcd.HideCursor();
                     lcd.SetContrast(60);
 
-                    if(json.queue.slots.Count > 0) {
-                        if(!hadData)
-                            lcd.FormFeed();
-                        hadData = true;
-                        lcd.SetBacklight(60);
-
-                        lcd.WriteText(0, 0, "{0,-10}{1,10}", json.queue.speed + "/s", json.queue.sizeleft);
-
-                        if(json.queue.noofslots > 0) {
-                            var slot = json.queue.slots[0];
-                            string filename = slot.filename;
-
-                            lcd.WriteText(0, 1, "{0,-2}: {1,-16}", json.queue.noofslots, json.queue.status);
-
-                            //if(filename.Length > 20)
-                                //filename = slot.filename.Substring(0, 17) + "...";
-                            
-                            lcd.WriteText(0, 2, "\x00fa");
-                            lcd.WriteText(19, 2, "\x00fc");
-                            lcd.ShowGraph(LCD.LCDGraphType.MediumCenter, 2, 1, 18, (float.Parse(slot.percentage) / 100f));
-                            //lcd.WriteText(0, 4, "{0,-20}", filename);
-                            lcd.Marquee(filename, 3, 2);
-                        }
+                    if(json.status != null && json.status == false) {
+                        lcd.WriteText(0, 0, json.error);
+                        lcd.WriteText(0, 2, "Please correct &");
+                        lcd.WriteText(0, 3, "restart.");
                     } else {
-                        if(hadData)
-                            lcd.FormFeed();
-                        hadData = false;
-                        lcd.SetBacklight(0);
+                        if(json.queue.slots.Count > 0) {
+                            if(!hadData)
+                                lcd.FormFeed();
+                            hadData = true;
+                            lcd.SetBacklight(60);
 
-                        lcd.StopMarquee();
-                        lcd.WriteText(0, 0, "SABnzbd    v{0,-8}", json.queue.version);
-                        lcd.WriteText(0, 1, "Uptime:    {0,-9}", json.queue.uptime);
-                        lcd.WriteText(0, 2, "Warnings:  {0,-9}", json.queue.have_warnings);
-                        lcd.WriteText(0, 3, "Avail(GB): {0,-9}", json.queue.diskspace2);
+                            lcd.WriteText(0, 0, "{0,-10}{1,10}", json.queue.speed + "/s", json.queue.sizeleft);
 
+                            if(json.queue.noofslots > 0) {
+                                var slot = json.queue.slots[0];
+                                string filename = slot.filename;
+
+                                lcd.WriteText(0, 1, "{0,-2}: {1,-16}", json.queue.noofslots, json.queue.status);
+
+                                //if(filename.Length > 20)
+                                //filename = slot.filename.Substring(0, 17) + "...";
+
+                                lcd.WriteText(0, 2, "\x00fa");
+                                lcd.WriteText(19, 2, "\x00fc");
+                                lcd.ShowGraph(LCD.LCDGraphType.MediumCenter, 2, 1, 18, (float.Parse(slot.percentage) / 100f));
+                                //lcd.WriteText(0, 4, "{0,-20}", filename);
+                                lcd.Marquee(filename, 3, 2);
+                            }
+                        } else {
+                            if(hadData)
+                                lcd.FormFeed();
+                            hadData = false;
+                            lcd.SetBacklight(0);
+
+                            lcd.StopMarquee();
+                            lcd.WriteText(0, 0, "SABnzbd    v{0,-8}", json.queue.version);
+                            lcd.WriteText(0, 1, "Uptime:    {0,-9}", json.queue.uptime);
+                            lcd.WriteText(0, 2, "Warnings:  {0,-9}", json.queue.have_warnings);
+                            lcd.WriteText(0, 3, "Avail(GB): {0,-9}", json.queue.diskspace2);
+
+                        }
                     }
                 } catch {
                     // whateva, just leave & try again next interval
